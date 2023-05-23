@@ -48,6 +48,11 @@ function start_Richards_code () {
         basic.pause(20)
     }
 }
+function start_Erics_code () {
+    while (true) {
+        basic.pause(20)
+    }
+}
 function should_spiral_turn (x: number, y: number) {
     if (x < 0 || y < 0 || (x > 4 || y > 4)) {
         return true
@@ -60,8 +65,9 @@ let on = false
 let y = 0
 let x = 0
 let direction = 0
-basic.showString("Hello!")
+basic.showString("Hello")
 start_Richards_code()
+start_Erics_code()
 basic.forever(function () {
 	
 })
