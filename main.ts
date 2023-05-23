@@ -66,8 +66,11 @@ let y = 0
 let x = 0
 let direction = 0
 basic.showString("Hello")
-start_Richards_code()
-start_Erics_code()
 basic.forever(function () {
-	
+    datalogger.log(datalogger.createCV("useful-data", input.soundLevel()))
+})
+control.inBackground(function () {
+    // Richard don't block the main thread or events / forever won't run >:( >:( >:(
+    start_Richards_code()
+    start_Erics_code()
 })
