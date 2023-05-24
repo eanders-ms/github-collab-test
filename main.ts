@@ -1,5 +1,5 @@
 function start_Richards_code () {
-    direction = 1
+    spiraldirection = 1
     x = 0
     y = 0
     while (true) {
@@ -9,37 +9,37 @@ function start_Richards_code () {
             led.plot(x, y)
         }
         if (x == 2 && y == 2) {
-            direction = 1
+            spiraldirection = 1
             x = 0
             y = 0
             on = !(on)
             continue;
         }
-        if (direction == 0) {
+        if (spiraldirection == 0) {
             y += -1
-        } else if (direction == 1) {
+        } else if (spiraldirection == 1) {
             x += 1
-        } else if (direction == 2) {
+        } else if (spiraldirection == 2) {
             y += 1
         } else {
             x += -1
         }
         if (should_spiral_turn(x, y)) {
-            if (direction == 0) {
+            if (spiraldirection == 0) {
                 y += 1
-            } else if (direction == 1) {
+            } else if (spiraldirection == 1) {
                 x += -1
-            } else if (direction == 2) {
+            } else if (spiraldirection == 2) {
                 y += -1
             } else {
                 x += 1
             }
-            direction = (direction + 1) % 4
-            if (direction == 0) {
+            spiraldirection = (spiraldirection + 1) % 4
+            if (spiraldirection == 0) {
                 y += -1
-            } else if (direction == 1) {
+            } else if (spiraldirection == 1) {
                 x += 1
-            } else if (direction == 2) {
+            } else if (spiraldirection == 2) {
                 y += 1
             } else {
                 x += -1
@@ -48,11 +48,17 @@ function start_Richards_code () {
         basic.pause(20)
     }
 }
+input.onButtonPressed(Button.A, function () {
+    music.play(music.createSoundExpression(WaveShape.Sine, 5000, 0, 255, 0, 5000, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
+})
 function start_Erics_code () {
-    while (true) {
+    while (thisworks) {
         basic.pause(20)
     }
 }
+input.onButtonPressed(Button.B, function () {
+    music.play(music.stringPlayable("C D E F G A B C5 ", 120), music.PlaybackMode.UntilDone)
+})
 function should_spiral_turn (x: number, y: number) {
     if (x < 0 || y < 0 || (x > 4 || y > 4)) {
         return true
@@ -64,7 +70,10 @@ function should_spiral_turn (x: number, y: number) {
 let on = false
 let y = 0
 let x = 0
-let direction = 0
+let spiraldirection = 0
+let thisworks = false
+music.setVolume(255)
+thisworks = true
 basic.showString("Hello")
 basic.forever(function () {
     datalogger.log(datalogger.createCV("useful-data", input.soundLevel()))
