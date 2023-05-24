@@ -1,5 +1,5 @@
 function start_Richards_code () {
-    spiraldirection = 1
+    dir = 1
     x = 0
     y = 0
     while (true) {
@@ -9,37 +9,37 @@ function start_Richards_code () {
             led.plot(x, y)
         }
         if (x == 2 && y == 2) {
-            spiraldirection = 1
+            dir = 1
             x = 0
             y = 0
             on = !(on)
             continue;
         }
-        if (spiraldirection == 0) {
+        if (dir == 0) {
             y += -1
-        } else if (spiraldirection == 1) {
+        } else if (dir == 1) {
             x += 1
-        } else if (spiraldirection == 2) {
+        } else if (dir == 2) {
             y += 1
         } else {
             x += -1
         }
         if (should_spiral_turn(x, y)) {
-            if (spiraldirection == 0) {
+            if (dir == 0) {
                 y += 1
-            } else if (spiraldirection == 1) {
+            } else if (dir == 1) {
                 x += -1
-            } else if (spiraldirection == 2) {
+            } else if (dir == 2) {
                 y += -1
             } else {
                 x += 1
             }
-            spiraldirection = (spiraldirection + 1) % 4
-            if (spiraldirection == 0) {
+            dir = (dir + 1) % 4
+            if (dir == 0) {
                 y += -1
-            } else if (spiraldirection == 1) {
+            } else if (dir == 1) {
                 x += 1
-            } else if (spiraldirection == 2) {
+            } else if (dir == 2) {
                 y += 1
             } else {
                 x += -1
@@ -70,9 +70,9 @@ function should_spiral_turn (x: number, y: number) {
 let on = false
 let y = 0
 let x = 0
-let spiraldirection = 0
+let dir = 0
 let thisworks = false
-music.setVolume(255)
+music.setVolume(10)
 thisworks = true
 basic.showString("Hello")
 basic.forever(function () {
